@@ -110,3 +110,11 @@ This approach was chosen for the following reasons:
 > - Secure password policies
 > - User registration and management features
 > - Proper secret management and environment variables
+
+---
+
+## JWT Secret Keys
+
+The application uses **hard-coded JWT secret keys** in `server/appsettings.json` and `server/appsettings.Development.json`. This is intentional for this exercise/demo project to simplify setup and eliminate the need for environment variable configuration.
+
+> **⚠️ Important:** In a production environment, JWT secret keys should **never** be hard-coded or committed to version control. Use environment variables or secure secret management services instead.
