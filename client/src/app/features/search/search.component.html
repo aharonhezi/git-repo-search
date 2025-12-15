@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Search GitHub Repositories</h1>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="search-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Search repositories</mat-label>
+      <input 
+        matInput 
+        formControlName="query" 
+        placeholder="Enter search query (e.g., angular, react, vue)"
+        (keypress)="onKeyPress($event)"
+        autocomplete="off">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-flat-button color="primary" type="submit" [disabled]="loading">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </form>
+
+  <div *ngIf="loading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Searching repositories...</p>
+  </div>
+
+  <div *ngIf="!loading && totalCount > 0" class="results-info">
+    <p>Found {{ totalCount }} repository(ies)</p>
+  </div>
+
+  <div *ngIf="!loading && repositories.length > 0" class="repositories-grid">
+    <mat-card *ngFor="let repo of repositories" class="repo-card">
+      <mat-card-header>
+        <img 
+          mat-card-avatar 
+          [src]="repo.owner.avatarUrl || 'assets/default-avatar.png'" 
+          [alt]="repo.owner.login + ' avatar'"
+          (error)="onImageError($event)">
+        <mat-card-title>{{ repo.name }}</mat-card-title>
+        <mat-card-subtitle>{{ repo.owner.login }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p *ngIf="repo.description" class="description">{{ repo.description }}</p>
+        <div class="repo-stats">
+          <mat-icon>star</mat-icon>
+          <span>{{ repo.stargazersCount | number }}</span>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="openRepository(repo)">
+          <mat-icon>open_in_new</mat-icon>
+          View on GitHub
+        </button>
+        <button 
+          mat-icon-button 
+          [color]="isBookmarked(repo.id) ? 'warn' : 'primary'"
+          (click)="toggleBookmark(repo)"
+          [matTooltip]="isBookmarked(repo.id) ? 'Remove bookmark' : 'Add bookmark'">
+          <mat-icon>{{ isBookmarked(repo.id) ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!loading && repositories.length === 0 && searchForm.value.query" class="no-results">
+    <p>No repositories found. Try a different search query.</p>
+  </div>
+</div>
+

@@ -1,0 +1,141 @@
+/* Material-friendly foundation */
+:root {
+  --bg: #f3f5fb;
+  --surface: #ffffff;
+  --surface-subtle: #f0f2f8;
+  --border: #e3e6ef;
+  --text-main: #1d2746;
+  --text-muted: #55607a;
+  --primary: #4f46e5;
+  --primary-soft: #e7e8ff;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 10px;
+  --gap-lg: 28px;
+  --gap-md: 18px;
+  --gap-sm: 12px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background: radial-gradient(circle at 30% 20%, #ffffff 0, #f3f5fb 55%, #ecf0f8 100%);
+  color: var(--text-main);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #312e81;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--gap-lg);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.surface-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* Shared component styles */
+h1 {
+  margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 20px;
+}
+
+.repo-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.repo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.repo-card mat-card-content {
+  flex: 1;
+}
+
+.description {
+  margin: 12px 0;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.5;
+}
+
+.repo-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  color: var(--text-muted);
+}
+
+.repo-stats mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #ffa500;
+}
+
+.repo-card mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 16px;
+}
+

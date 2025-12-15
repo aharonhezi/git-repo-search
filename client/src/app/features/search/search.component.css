@@ -1,0 +1,48 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.search-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.search-form mat-form-field {
+  flex: 1;
+}
+
+
+.results-info {
+  margin-bottom: 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.repositories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .repositories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

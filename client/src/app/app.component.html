@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="brand">GitHub Repository Search</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="authService.isAuthenticated()">
+    <a mat-button routerLink="/search" routerLinkActive="active">
+      <mat-icon>search</mat-icon>
+      Search
+    </a>
+    <a mat-button routerLink="/bookmarks" routerLinkActive="active">
+      <mat-icon>bookmarks</mat-icon>
+      Bookmarks
+    </a>
+    <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+      <mat-icon>account_circle</mat-icon>
+      {{ getUsername() }}
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
